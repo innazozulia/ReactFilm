@@ -1,0 +1,124 @@
+[
+  {
+    "id": "1",
+    "title": "Polaroid Originals Now",
+    "price": 58,
+    "imageUrl": "img/items/item-1.jpeg"
+  },
+  {
+    "id": "2",
+    "title": "Polaroid Now Instant Green",
+    "price": 47,
+    "imageUrl": "img/items/item-2.webp"
+  },
+  {
+    "id": "3",
+    "title": "Polaroid Now Instant Red",
+    "price": 49,
+    "imageUrl": "img/items/item-3.webp"
+  },
+  {
+    "id": "4",
+    "title": "Polaroid Now Instant Blue",
+    "price": 47,
+    "imageUrl": "img/items/item-4.webp"
+  },
+  {
+    "id": "5",
+    "title": "Fujifilm Instax mini 11 White",
+    "price": 35,
+    "imageUrl": "img/items/item-5.webp"
+  },
+  {
+    "id": "6",
+    "title": "Fujifilm Instax mini 11 Pink",
+    "price": 38,
+    "imageUrl": "img/items/item-6.webp"
+  },
+  {
+    "id": "7",
+    "title": "Fujifilm Instax mini 11 Blue",
+    "price": 35,
+    "imageUrl": "img/items/item-7.webp"
+  },
+  {
+    "id": "8",
+    "title": "Fujifilm Instax mini 11 Black",
+    "price": 31,
+    "imageUrl": "img/items/item-8.webp"
+  },
+  {
+    "id": "9",
+    "title": "Polaroid Snap instant Red",
+    "price": 47,
+    "imageUrl": "img/items/item-9.webp"
+  },
+  {
+    "id": "10",
+    "title": "Fujifilm Instax mini 40 Black",
+    "price": 46,
+    "imageUrl": "img/items/item-10.webp"
+  },
+  {
+    "id": "11",
+    "title": "Fujifilm instax mini 90",
+    "price": 48,
+    "imageUrl": "img/items/item-11.webp"
+  },
+  {
+    "id": "12",
+    "title": "Fujifilm Instax mini Evo",
+    "price": 42,
+    "imageUrl": "img/items/item-12.webp"
+  },
+  {
+    "id": "13",
+    "title": "Fujifilm Instax wide 300 ",
+    "price": 51,
+    "imageUrl": "img/items/item-13.webp"
+  },
+  {
+    "id": "14",
+    "title": "Fujifilm Instax SQ1 Glacier Blue ",
+    "price": 56,
+    "imageUrl": "img/items/item-14.webp"
+  },
+  {
+    "id": "15",
+    "title": "Leica M3 ",
+    "price": 2400,
+    "imageUrl": "img/items/item-15.webp"
+  },
+  {
+    "id": "16",
+    "title": "Olympus Mju III ",
+    "price": 340,
+    "imageUrl": "img/items/item-16.webp"
+  },
+  {
+    "id": "17",
+    "title": "Nikon F3 HP",
+    "price": 520,
+    "imageUrl": "img/items/item-17.webp"
+  },
+  {
+    "id": "18",
+    "title": "Leica Minilux",
+    "price": 956,
+    "imageUrl": "img/items/item-18.webp"
+  },
+  {
+    "id": "19",
+    "title": "Contax G1 ",
+    "price": 756,
+    "imageUrl": "img/items/item-19.webp"
+  },
+  {
+    "id": "20",
+    "title": "Canon cannonet QL III",
+    "price": 456,
+    "imageUrl": "img/items/item-20.webp"
+  }
+]
+
+
