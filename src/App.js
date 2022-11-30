@@ -17,19 +17,39 @@ function App() {
   const [isPageLoading, setIsPageLoading] = React.useState(true);
   const [cardOpened, setCardOpened] = React.useState(false);
 
+  //cameras
   React.useEffect(() => {
     async function fetchData() {
       setIsPageLoading(true);
       const itemsResponse = await axios.get("http://localhost:8080/cameras");
-      const favoritesResponse = await axios.get(
-        "https://628112b11020d852058523c6.mockapi.io/favorite",
-      );
-      const cardResponse = await axios.get(
-        "https://628112b11020d852058523c6.mockapi.io/card",
-      );
       setIsPageLoading(false);
       setItems(itemsResponse.data);
+      // setCardItems(cardResponse.data);
+      // setFavorites(favoritesResponse.data);
+    }
+    fetchData();
+  }, []);
+
+  // //card items = customer items
+  React.useEffect(() => {
+    async function fetchData() {
+      setIsPageLoading(true);
+      const cardResponse = await axios.get(
+        "http://localhost:8080/customer/items",
+      );
+      setIsPageLoading(false);
       setCardItems(cardResponse.data);
+    }
+    fetchData();
+  }, []);
+
+  React.useEffect(() => {
+    async function fetchData() {
+      setIsPageLoading(true);
+      const favoritesResponse = await axios.get(
+        "http://localhost:8080/customer/likes",
+      );
+      setIsPageLoading(false);
       setFavorites(favoritesResponse.data);
     }
     fetchData();
@@ -42,16 +62,13 @@ function App() {
   const onAddToFavorite = async (obj) => {
     try {
       if (favorites.find((favObj) => Number(favObj.id) === Number(obj.id))) {
-        axios.delete(
-          `https://628112b11020d852058523c6.mockapi.io/favorite/${obj.id}`,
-        );
+        axios.delete(`http://localhost:8080/customer/likes/${obj.id}`);
         setFavorites((prev) =>
           prev.filter((item) => Number(item.id) !== Number(obj.id)),
         );
       } else {
         const { data } = await axios.post(
-          "https://628112b11020d852058523c6.mockapi.io/favorite",
-          obj,
+          `http://localhost:8080/customer/likes/${obj.id}`,
         );
         setFavorites((prev) => [...prev, data]);
       }
@@ -70,13 +87,12 @@ function App() {
           prev.filter((item) => Number(item.parentId) !== Number(obj.id)),
         );
         await axios.delete(
-          `https://628112b11020d852058523c6.mockapi.io/card/${findItem.id}`,
+          `http://localhost:8080/customer/items/${findItem.id}`,
         );
       } else {
         setCardItems((prev) => [...prev, obj]);
         const { data } = await axios.post(
-          "https://628112b11020d852058523c6.mockapi.io/card",
-          obj,
+          `http://localhost:8080/customer/items/${obj.id}`,
         );
         setCardItems((prev) =>
           prev.map((item) => {
@@ -94,10 +110,21 @@ function App() {
       console.error(error);
     }
   };
+  const onRemoveItem = (id) => {
+    try {
+      axios.delete(`http://localhost:8080/customer/items/${id}`);
+      setCardItems((prev) =>
+        prev.filter((item) => Number(item.id) !== Number(id)),
+      );
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const isAddedItems = (id) => {
     return cardItems.some((obj) => Number(obj.parentId) === Number(id));
   };
+
   return (
     <AppContext.Provider
       value={{
@@ -114,7 +141,7 @@ function App() {
         {cardOpened ? (
           <Drawer
             items={cardItems}
-            // onRemove={onRemoveItem}
+            onRemove={onRemoveItem}
             onClose={() => setCardOpened(false)}
           />
         ) : null}
@@ -138,12 +165,12 @@ function App() {
             }
           />
           <Route
-            path="/favorites"
+            path="/customer/likes"
             exact
             element={<Favorites />}
           />
           <Route
-            path="/orders"
+            path="/order/history"
             exact
             element={<Orders />}
           />

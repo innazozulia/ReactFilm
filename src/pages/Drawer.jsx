@@ -2,32 +2,36 @@ import React from "react";
 import axios from "axios";
 import Info from "./Info";
 import AppContext from "../context";
+import { useCart } from "../hooks/useCart";
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 function Drawer({ onRemove, onClose, items = [] }) {
-  const { cardItems, setCardItems } = React.useContext(AppContext);
+  const { cardItems, setCardItems, totalPrice } = useCart();
   const [isOrderComplete, setIsOrderComplete] = React.useState(false);
-  const [orderId, setOrderId] = React.useState(null);
+  // const [orderId, setOrderId] = React.useState(null);
   const [isLoadingInfo, setIsLoadingInfo] = React.useState(false);
 
-  const totalPrice = cardItems.reduce((sum, obj) => obj.price + sum, 0);
+  // const totalPrice = cardItems.reduce((sum, obj) => obj.price + sum, 0);
 
   const onClickOrder = async () => {
     try {
       setIsLoadingInfo(true);
-      const { data } = await axios.post("/orders", {
-        items: cardItems,
-      });
-      setOrderId(data.id);
+      const { data } = await axios.post(
+        "http://localhost:8080/order/checkout",
+        {
+          items: cardItems,
+        },
+      );
+      // setOrderId(data.id);
       setIsOrderComplete(true);
       setCardItems([]);
 
-      for (let i = 0; i < cardItems.length; i++) {
-        const item = cardItems[i];
-        await axios.delete("/cart/" + item.id);
-        await delay(1000);
-      }
+      // for (let i = 0; i < cardItems.length; i++) {
+      //   const item = cardItems[i];
+      //   await axios.delete("http://localhost:8080/customer/items" + item.id);
+      //   await delay(1000);
+      // }
     } catch (error) {
       console.log(error);
     }
@@ -85,7 +89,6 @@ function Drawer({ onRemove, onClose, items = [] }) {
                   <span>Tax 5% :</span>
                   <div></div>
                   <b>{(totalPrice / 100) * 5} $ </b>
-                  {/* <b>Math round({(totalPrice / 100) * 5})</b> */}
                 </li>
               </ul>
               <button
@@ -102,7 +105,7 @@ function Drawer({ onRemove, onClose, items = [] }) {
               <button
                 onClick={onClose}
                 className="green__btn back__btn">
-                Back{" "}
+                Back
                 <img
                   width={20}
                   src="img/left.png"
@@ -116,7 +119,7 @@ function Drawer({ onRemove, onClose, items = [] }) {
             title={isOrderComplete ? "Order is processed" : "Basket is empty"}
             description={
               isOrderComplete
-                ? `Your order #${orderId} is completed, wait for a call from the manager`
+                ? `Your order is completed, wait for a call from the manager`
                 : "Please, add some item"
             }
             image={isOrderComplete ? "img/order.png" : "img/box.png"}

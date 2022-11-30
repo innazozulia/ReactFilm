@@ -10,12 +10,12 @@ function Favorites() {
         <h1>My Favorites</h1>
       </div>
       <div className="cameras">
-        {favorites.map((item, index) => (
+        {favorites.map((object, index) => (
           <CamerasItems
             key={index}
             favorited={true}
             onClickFavorite={onAddToFavorite}
-            {...item}
+            {...object}
           />
         ))}
       </div>
@@ -23,7 +23,3 @@ function Favorites() {
   );
 }
 export default Favorites;
-
-// title={item.title}
-// price={item.price}
-// imageUrl={item.imageUrl}

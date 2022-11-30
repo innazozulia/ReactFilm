@@ -42,7 +42,7 @@ const CamerasItems = ({
         width="100%"
         heigth={112}
         src={imageUrl}
-        alt="sneakers"
+        alt="camera"
       />
       <h5>{title} </h5>
       <div className={style.card__button}>
