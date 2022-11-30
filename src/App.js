@@ -165,12 +165,12 @@ function App() {
             }
           />
           <Route
-            path="/customer/likes"
+            path="/favorites"
             exact
             element={<Favorites />}
           />
           <Route
-            path="/order/history"
+            path="/orders"
             exact
             element={<Orders />}
           />

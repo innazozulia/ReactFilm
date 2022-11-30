@@ -32,7 +32,7 @@ function Header(props) {
           <span>{totalPrice} $</span>
         </li>
         <li>
-          <Link to="/customer/likes">
+          <Link to="/favorites">
             <img
               width={20}
               height={20}
@@ -42,7 +42,7 @@ function Header(props) {
           </Link>
         </li>
         <li>
-          <Link to="/order/history">
+          <Link to="/orders">
             <img
               width={20}
               heigth={20}

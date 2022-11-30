@@ -32,7 +32,9 @@ function Orders() {
           {(isLoadingOrders ? [...Array(8)] : orders).map((item, index) => (
             <CamerasItems
               key={index}
-              favorited={true}
+              onClickFavorite={(obj) => onAddtoFavorite(obj)}
+              onPlus={(obj) => onAddToCart(obj)}
+              loading={isLoadingOrders}
               {...item}
             />
           ))}
