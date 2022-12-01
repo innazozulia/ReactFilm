@@ -24,13 +24,11 @@ function App() {
       const itemsResponse = await axios.get("http://localhost:8080/cameras");
       setIsPageLoading(false);
       setItems(itemsResponse.data);
-      // setCardItems(cardResponse.data);
-      // setFavorites(favoritesResponse.data);
     }
     fetchData();
   }, []);
 
-  // //card items = customer items
+  //card items = customer items
   React.useEffect(() => {
     async function fetchData() {
       setIsPageLoading(true);

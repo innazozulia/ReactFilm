@@ -13,10 +13,8 @@ function Orders() {
   React.useEffect(() => {
     (async () => {
       try {
-        const { data } = await axios.get(
-          "https://localhost:8080/order/history",
-        );
-        setOrders(data.reduce((prev, obj) => [...prev, ...obj.items], []));
+        const { data } = await axios.get("http://localhost:8080/order/history");
+        setOrders(data);
         setIsLoadingOrders(false);
       } catch (error) {
         console.error(error);
@@ -29,7 +27,7 @@ function Orders() {
       <div className="content__title">
         <h1>My Orders</h1>
         <div className="cameras">
-          {(isLoadingOrders ? [...Array(8)] : orders).map((item, index) => (
+          {orders.map((item, index) => (
             <CamerasItems
               key={index}
               onClickFavorite={(obj) => onAddtoFavorite(obj)}

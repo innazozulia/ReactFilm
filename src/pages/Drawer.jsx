@@ -9,10 +9,7 @@ const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 function Drawer({ onRemove, onClose, items = [] }) {
   const { cardItems, setCardItems, totalPrice } = useCart();
   const [isOrderComplete, setIsOrderComplete] = React.useState(false);
-  // const [orderId, setOrderId] = React.useState(null);
   const [isLoadingInfo, setIsLoadingInfo] = React.useState(false);
-
-  // const totalPrice = cardItems.reduce((sum, obj) => obj.price + sum, 0);
 
   const onClickOrder = async () => {
     try {
@@ -23,15 +20,8 @@ function Drawer({ onRemove, onClose, items = [] }) {
           items: cardItems,
         },
       );
-      // setOrderId(data.id);
       setIsOrderComplete(true);
       setCardItems([]);
-
-      // for (let i = 0; i < cardItems.length; i++) {
-      //   const item = cardItems[i];
-      //   await axios.delete("http://localhost:8080/customer/items" + item.id);
-      //   await delay(1000);
-      // }
     } catch (error) {
       console.log(error);
     }
